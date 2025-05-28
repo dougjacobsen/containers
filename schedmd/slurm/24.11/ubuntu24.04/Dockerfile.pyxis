@@ -17,11 +17,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 USER root
 WORKDIR /tmp/
 
+ARG TARGETARCH
 ARG ENROOT_VERSION
 ENV ENROOT_VERSION="${ENROOT_VERSION}"
 
-ADD https://github.com/NVIDIA/enroot/releases/download/v${ENROOT_VERSION}/enroot_${ENROOT_VERSION}-1_amd64.deb enroot_${ENROOT_VERSION}-1_amd64.deb
-ADD https://github.com/NVIDIA/enroot/releases/download/v${ENROOT_VERSION}/enroot+caps_${ENROOT_VERSION}-1_amd64.deb enroot+caps_${ENROOT_VERSION}-1_amd64.deb
+ADD https://github.com/NVIDIA/enroot/releases/download/v${ENROOT_VERSION}/enroot_${ENROOT_VERSION}-1_${TARGETARCH}.deb enroot_${ENROOT_VERSION}-1_${TARGETARCH}.deb
+ADD https://github.com/NVIDIA/enroot/releases/download/v${ENROOT_VERSION}/enroot+caps_${ENROOT_VERSION}-1_${TARGETARCH}.deb enroot+caps_${ENROOT_VERSION}-1_${TARGETARCH}.deb
 
 ARG PYXIS_VERSION
 ENV PYXIS_VERSION="${PYXIS_VERSION}"

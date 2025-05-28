@@ -17,11 +17,17 @@ ARG DEBIAN_FRONTEND=noninteractive
 USER root
 WORKDIR /tmp/
 
+ARG TARGETARCH
 ARG ENROOT_VERSION
 ENV ENROOT_VERSION="${ENROOT_VERSION}"
 
-ADD https://github.com/NVIDIA/enroot/releases/download/v${ENROOT_VERSION}/enroot-${ENROOT_VERSION}-1.el8.x86_64.rpm enroot-${ENROOT_VERSION}-1.el8.x86_64.rpm
-ADD https://github.com/NVIDIA/enroot/releases/download/v${ENROOT_VERSION}/enroot+caps-${ENROOT_VERSION}-1.el8.x86_64.rpm enroot+caps-${ENROOT_VERSION}-1.el8.x86_64.rpm
+RUN bash -c 'if [[ "$TARGETARCH" == "amd64" ]]; then \
+        export ENROOT_ARCH="x86_64"; \
+else \
+        export ENROOT_ARCH="aarch64"; \
+fi; \
+curl -LO https://github.com/NVIDIA/enroot/releases/download/v${ENROOT_VERSION}/enroot-${ENROOT_VERSION}-1.el8.${ENROOT_ARCH}.rpm; \
+curl -LO https://github.com/NVIDIA/enroot/releases/download/v${ENROOT_VERSION}/enroot+caps-${ENROOT_VERSION}-1.el8.${ENROOT_ARCH}.rpm'
 
 ARG PYXIS_VERSION
 ENV PYXIS_VERSION="${PYXIS_VERSION}"
