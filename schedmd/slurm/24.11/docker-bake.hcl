@@ -315,6 +315,9 @@ target "slurmd_ubuntu2404" {
     format_tag("${DOCKER_BAKE_REGISTRY}", "slurmd", "${slurm_version("${slurm_version}")}", "ubuntu24.04", "${DOCKER_BAKE_SUFFIX}"),
     format_tag("${DOCKER_BAKE_REGISTRY}", "slurmd", "${slurm_version}", "ubuntu24.04", "${DOCKER_BAKE_SUFFIX}"),
   ]
+  args = {
+    PARENT_IMAGE="nvcr.io/nvidia/cuda-dl-base:25.05-cuda12.9-runtime-ubuntu24.04"
+  }
 }
 
 target "slurmdbd_ubuntu2404" {
@@ -351,6 +354,9 @@ target "login_ubuntu2404" {
     format_tag("${DOCKER_BAKE_REGISTRY}", "login", "${slurm_version("${slurm_version}")}", "ubuntu24.04", "${DOCKER_BAKE_SUFFIX}"),
     format_tag("${DOCKER_BAKE_REGISTRY}", "login", "${slurm_version}", "ubuntu24.04", "${DOCKER_BAKE_SUFFIX}"),
   ]
+  args = {
+    PARENT_IMAGE="nvcr.io/nvidia/cuda-dl-base:25.05-cuda12.9-runtime-ubuntu24.04"
+  }
 }
 
 ################################################################################
@@ -373,6 +379,9 @@ target "slurmd_pyxis_ubuntu2404" {
   contexts = {
     "ghcr.io/slinkyproject/slurmd:24.11-ubuntu24.04" = "target:slurmd_ubuntu2404"
   }
+  args = {
+    PARENT_IMAGE="nvcr.io/nvidia/cuda-dl-base:25.05-cuda12.9-runtime-ubuntu24.04"
+  }
 }
 
 target "login_pyxis_ubuntu2404" {
@@ -386,5 +395,8 @@ target "login_pyxis_ubuntu2404" {
   contexts = {
     "ghcr.io/slinkyproject/slurmd:24.11-ubuntu24.04" = "target:slurmd_ubuntu2404"
     "ghcr.io/slinkyproject/login:24.11-ubuntu24.04" = "target:login_ubuntu2404"
+  }
+  args = {
+    PARENT_IMAGE="nvcr.io/nvidia/cuda-dl-base:25.05-cuda12.9-runtime-ubuntu24.04"
   }
 }
