@@ -104,6 +104,68 @@ apt-get -qq update
 apt-get -qq -y install --no-install-recommends \
   nvidia-container-toolkit
 rm *.gpgkey && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install -y \
+  aria2 \
+  build-essential \
+  clustershell \
+  cmake \
+  colordiff \
+  dnsutils \
+  emacs \
+  expect \
+  git \
+  gzip \
+  htop \
+  infiniband-diags \
+  iotop \
+  iproute2 \
+  mawk \
+  mc \
+  mosh \
+  nvtop \
+  parallel \
+  pigz \
+  python3-numpy \
+  python3-pip \
+  python3-venv \
+  rclone \
+  redis \
+  ripgrep \
+  rsync \
+  screen \
+  sed \
+  sudo \
+  tmux \
+  tree \
+  unzip \
+  vim \
+  wget \
+  xz-utils \
+  zip \
+  zsh
+
+wget https://github.com/cli/cli/releases/download/v2.50.0/gh_2.50.0_linux_amd64.deb && \
+    dpkg -i gh_2.50.0_linux_amd64.deb && \
+    rm gh_2.50.0_linux_amd64.deb
+
+wget -q https://aka.ms/InstallAzureCLIDeb && \
+    bash InstallAzureCLIDeb && \
+    rm InstallAzureCLIDeb
+
+wget -q https://aka.ms/downloadazcopy-v10-linux -O azcopy_v10.tar.gz && \
+    mkdir azcopy && \
+    tar -xf azcopy_v10.tar.gz -C ./azcopy --strip-components=1 && \
+    mv ./azcopy/azcopy /usr/local/bin/ && \
+    rm -r azcopy_v10.tar.gz ./azcopy
+
+wget -q https://github.com/mikefarah/yq/releases/download/v4.45.1/yq_linux_amd64 -O /usr/local/bin/yq && \
+    chmod +x /usr/local/bin/yq
+
+# this is the canonical way of installing uv; currently forcing fixed version
+curl -LsSf https://astral.sh/uv/0.7.4/install.sh | env UV_INSTALL_DIR="/usr/bin" sh
 EOR
 
 ################################################################################
@@ -163,4 +225,69 @@ apt-get -qq update
 apt-get -qq -y install --no-install-recommends \
   nvidia-container-toolkit
 rm *.gpgkey && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install -y \
+  aria2 \
+  build-essential \
+  clustershell \
+  cmake \
+  colordiff \
+  dnsutils \
+  emacs \
+  expect \
+  git \
+  gzip \
+  htop \
+  infiniband-diags \
+  iotop \
+  iproute2 \
+  mawk \
+  mc \
+  mosh \
+  nvtop \
+  parallel \
+  pigz \
+  python3-numpy \
+  python3-pip \
+  python3-venv \
+  rclone \
+  redis \
+  ripgrep \
+  rsync \
+  screen \
+  sed \
+  sudo \
+  tmux \
+  tree \
+  unzip \
+  vim \
+  wget \
+  xz-utils \
+  zip \
+  zsh
+
+wget https://github.com/cli/cli/releases/download/v2.50.0/gh_2.50.0_linux_amd64.deb && \
+    dpkg -i gh_2.50.0_linux_amd64.deb && \
+    rm gh_2.50.0_linux_amd64.deb
+
+wget -q https://aka.ms/InstallAzureCLIDeb && \
+    bash InstallAzureCLIDeb && \
+    rm InstallAzureCLIDeb
+
+wget -q https://aka.ms/downloadazcopy-v10-linux -O azcopy_v10.tar.gz && \
+    mkdir azcopy && \
+    tar -xf azcopy_v10.tar.gz -C ./azcopy --strip-components=1 && \
+    mv ./azcopy/azcopy /usr/local/bin/ && \
+    rm -r azcopy_v10.tar.gz ./azcopy
+
+wget -q https://github.com/mikefarah/yq/releases/download/v4.45.1/yq_linux_amd64 -O /usr/local/bin/yq && \
+    chmod +x /usr/local/bin/yq
+
+# this is the canonical way of installing uv; currently forcing fixed version
+curl -LsSf https://astral.sh/uv/0.7.4/install.sh | env UV_INSTALL_DIR="/usr/bin" sh
+
+
 EOR
